@@ -1,0 +1,28 @@
+{
+  "name": "mirrorsolutions",
+  "version": "1.0.0",
+  "description": "SuhinaMirror demo",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "node": "0.0.0",
+    "node.js": "^0.0.0",
+    "ws": "^1.1.1",
+    "xss-filters": "^1.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quody/suhinamirror.git"
+  },
+  "author": "Aleksi (envainoaa@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quody/suhinamirror/issues"
+  },
+  "homepage": "https://github.com/quody/suhinamirror#readme"
+}

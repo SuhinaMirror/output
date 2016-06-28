@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<script>
+const store = 
+{
+	"kalja":0
+};
+</script>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>Title of the document</title>
+</head>
+<body>
+	Magic Mirror
+	<br>
+	<br>
+	Kalja kpl:
+	<span id='kalja'>-</span>
+	<br><br>
+	<form>Kaljamäärä: <input type="text" id="kaljaCount" value=5></input></form>
+	<button id='detect'>Päivitä</button>
+<body>
+
+<script>
+	function update() {
+		for(var key in store)
+		{
+			console.log(key);
+			document.getElementById(key).innerHTML = store[key];
+		}
+	}  
+	var ws = new WebSocket('ws://localhost:3000');
+	ws.onmessage = function(msg) {
+		console.log("got msg");
+		realData = JSON.parse(msg.data)
+		for(var key in realData) {
+			store[key] = realData[key];
+		}
+		console.log(store);
+		update();
+	};
+	
+	document.getElementById('detect').addEventListener('click', function(event) {
+		var obj = { 'kalja':document.getElementById('kaljaCount').value }
+		console.log(obj['kalja']);
+		ws.send(JSON.stringify(obj));
+	});
+</script>
+</HTML>
