@@ -1,49 +1,36 @@
 <!DOCTYPE html>
 <script>
-const store = 
+let store =
 {
-	"kalja":0
+	"kaljakpl":0
 };
 </script>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset='UTF-8'>
-	<title>Title of the document</title>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+	<title></title>
 </head>
 <body>
-	Magic Mirror
-	<br>
-	<br>
-	Kalja kpl:
-	<span id='kalja'>-</span>
-	<br><br>
-	<form>Kaljamäärä: <input type="text" id="kaljaCount" value=5></input></form>
-	<button id='detect'>Päivitä</button>
-<body>
+  <div class="container">
 
-<script>
-	function update() {
-		for(var key in store)
-		{
-			console.log(key);
-			document.getElementById(key).innerHTML = store[key];
-		}
-	}  
-	var ws = new WebSocket('ws://localhost:3000');
-	ws.onmessage = function(msg) {
-		console.log("got msg");
-		realData = JSON.parse(msg.data)
-		for(var key in realData) {
-			store[key] = realData[key];
-		}
-		console.log(store);
-		update();
-	};
-	
-	document.getElementById('detect').addEventListener('click', function(event) {
-		var obj = { 'kalja':document.getElementById('kaljaCount').value }
-		console.log(obj['kalja']);
-		ws.send(JSON.stringify(obj));
-	});
-</script>
+    <div class="widget width-2 height-1 col-1 row-1" id="kaljalaskuri">
+      <h2>Kaljalaskuri</h2>
+      <p class="kaljamittari">🍺 🍺 🍺 🍺</p>
+			<p id="kaljakpl"></p>
+    </div>
+
+    <div class="widget width-1 height-1 col-8 row-1" id="clock">
+      <h2>16:20</h2>
+    </div>
+
+		<div class="container-item">
+			<h2>Hi</h2>
+			<h2 id="active_user"></h2>
+			<h2>!</h2>
+  	</div>
+		<div class="widget col-8 row-9"><button id='detect'>Päivitä</button></div>
+<body>
+<script src="ui_websockets.js"></script>
 </HTML>
